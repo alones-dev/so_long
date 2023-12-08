@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/08 10:29:45 by kdaumont         ###   ########.fr       */
+/*   Created: 2023/11/14 13:46:54 by kdaumont          #+#    #+#             */
+/*   Updated: 2023/12/08 10:00:48 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <fcntl.h>
-# include <math.h>
-# include <mlx.h>
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+char	*ft_strnjoin(char *s1, char *s2, size_t new_line);
+int		ft_strlen(const char *s);
+char	*get_next_line(int fd);
 
 #endif
