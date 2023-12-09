@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/08 16:38:46 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/09 09:04:49 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	close_win(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	main(void)
-{
-	t_vars	vars;
+// int	main(void)
+// {
+// 	t_vars	vars;
 
-	vars.count = 0;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_key_hook(vars.win, close_win, &vars);
-	mlx_loop(vars.mlx);
-}
+// 	vars.count = 0;
+// 	vars.mlx = mlx_init();
+// 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+// 	mlx_key_hook(vars.win, close_win, &vars);
+// 	mlx_loop(vars.mlx);
+// }
