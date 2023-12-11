@@ -6,13 +6,13 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:46:45 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/08 09:58:14 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/11 09:27:39 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+int	ft_strnlen(const char *s)
 {
 	int	i;
 
@@ -34,8 +34,8 @@ char	*ft_strnjoin(char *s1, char *s2, size_t new_line)
 	if (new_line)
 		k = new_line;
 	else
-		k = ft_strlen(s2);
-	new = malloc(sizeof(char) * (ft_strlen(s1) + k) + 1);
+		k = ft_strnlen(s2);
+	new = malloc(sizeof(char) * (ft_strnlen(s1) + k) + 1);
 	if (!new)
 		return (free(s1), NULL);
 	i = -1;

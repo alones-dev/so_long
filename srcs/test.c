@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/09 09:04:49 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:24:58 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	close_win(int keycode, t_vars *vars)
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
 		return (1);
 	}
 	if (move_key(keycode))
