@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:30:11 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/11 10:35:42 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:46:33 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	ft_strlentonl(char *line)
 @param message -> message printed
 @param error -> message is error or not
 @return :
-	0 = message printed, not error
-	1 = message printed, error
+	0 = message printed, error
+	1 = message printed, not error
 	-1 = message not printed
 */
 int	print_message(char *message, int error)
