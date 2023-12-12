@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/11 10:24:58 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:52:22 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	close_win(int keycode, t_vars *vars)
+int	close_win(int keycode, t_data *vars)
 {
 	if (keycode == 65307)
 	{

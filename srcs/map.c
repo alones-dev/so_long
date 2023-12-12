@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/11 16:29:00 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:11:44 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 	- init map size; OK
 	- malloc **map -> alloc all gnl map; OK
 	- free map; OK
-	- check walls;
-	- check number of letter given;
-	- parse map (init);
+	- check walls; OK
+	- check number of letter given; OK
+	- parse map;
 */
 
 /* Initialize the map size from the given map
@@ -39,7 +39,7 @@ int	init_map_size(t_map *map, char *file)
 	line = get_next_line(fd);
 	count = 0;
 	if (!line || fd == -1)
-		return (free(line), print_message("Please, enter a valid map.", 1));
+		return (free(line), 0);
 	else
 		map->w = ft_strlentonl(line);
 	while (line != NULL)
@@ -51,6 +51,8 @@ int	init_map_size(t_map *map, char *file)
 	}
 	map->h = count;
 	close(fd);
+	if (map->h == map->w)
+		return (0);
 	return (free(line), 1);
 }
 
@@ -77,8 +79,7 @@ int	alloc_map(t_map *map, char *file)
 	{
 		map->map[i] = str;
 		if (ft_strlentonl(str) != map->w)
-			return (free(str),
-				print_message("All lines must have the same size.", 1));
+			return (free(str), 0);
 		i++;
 		str = get_next_line(fd);
 	}
@@ -145,27 +146,28 @@ int	init_map(t_map *map, char *file)
 	map->h = 0;
 	map->coins = 0;
 	if (!init_map_size(map, file))
-		return (0);
+		return (print_message("Map invalid.", 1));
 	if (!alloc_map(map, file))
-		return (free(map), 0);
+		return (print_message("Map invalid or malloc failed", 1));
 	map->coins = get_elt_count(map, 'C');
+	if (!check_characters(map))
+		return (print_message("Invalid character in map.", 1));
+	if (!check_wall(map))
+		return (print_message("Hole find around map.", 1));
+	if (!check_amount_elt(map))
+		return (print_message("Minimun amount element false.", 1));
 	return (1);
 }
 
 int	main(int ac, char **av)
 {
 	t_map	map;
-	int		i;
 
 	if (ac != 2)
 		return (print_message("Please, enter a valid map.", 1));
-	init_map(&map, av[1]);
-	i = 0;
-	while (i < map.h)
-	{
-		ft_printf("s: %s", map.map[i]);
-		i++;
-	}
-	ft_printf("\ncoins: %d", map.coins);
+	if (init_map(&map, av[1]))
+		ft_printf("GOOD\n");
+	else
+		ft_printf("FAILED\n");
 	return (0);
 }

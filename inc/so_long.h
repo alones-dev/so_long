@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/11 09:51:07 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:52:33 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 /*
 	Game structures side
 */
-typedef struct s_vars
+typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	int		count;
-}			t_vars;
+	int		w;
+	int		h;
+	int		moves;
+}			t_data;
 
 typedef struct s_map
 {
@@ -43,5 +45,10 @@ typedef struct s_map
 */
 int			ft_strlentonl(char *line);
 int			print_message(char *message, int error);
+int			check_wall(t_map *map);
+int			in_set(int c, char *set);
+int			check_characters(t_map *map);
+int			get_elt_count(t_map *map, int elt);
+int			check_amount_elt(t_map *map);
 
 #endif

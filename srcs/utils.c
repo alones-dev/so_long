@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:30:11 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/11 15:46:33 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:52:39 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,25 @@ int	print_message(char *message, int error)
 		return (!error);
 	}
 	return (-1);
+}
+
+/* Check if the character given is in str set
+@param c -> character checked
+@param set -> str set where we check if the c char is on
+@return :
+	0 : not in set
+	1 : in set
+*/
+int	in_set(int c, char *set)
+{
+	int i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
