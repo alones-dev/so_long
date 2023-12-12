@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/12 11:11:44 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:55:07 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 /*
 	TODO:
-	- init map size; OK
-	- malloc **map -> alloc all gnl map; OK
-	- free map; OK
-	- check walls; OK
-	- check number of letter given; OK
-	- parse map;
+	- flood map
 */
 
 /* Initialize the map size from the given map
@@ -157,17 +152,4 @@ int	init_map(t_map *map, char *file)
 	if (!check_amount_elt(map))
 		return (print_message("Minimun amount element false.", 1));
 	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	t_map	map;
-
-	if (ac != 2)
-		return (print_message("Please, enter a valid map.", 1));
-	if (init_map(&map, av[1]))
-		ft_printf("GOOD\n");
-	else
-		ft_printf("FAILED\n");
-	return (0);
 }
