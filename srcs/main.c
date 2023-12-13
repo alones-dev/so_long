@@ -6,51 +6,74 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/12 15:51:35 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:44:10 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	move_key(int keycode)
+/* Destroy all images & close properly the window
+@param data -> t_data struct pointer
+@return 0
+*/
+int	close_window(t_data *data)
 {
-	if (keycode == 'w')
-		return (1);
-	if (keycode == 'a')
-		return (1);
-	if (keycode == 's')
-		return (1);
-	if (keycode == 'd')
-		return (1);
+	mlx_destroy_image(data->mlx, data->img_character);
+	mlx_destroy_image(data->mlx, data->img_coin);
+	mlx_destroy_image(data->mlx, data->img_portal);
+	mlx_destroy_image(data->mlx, data->img_tiles);
+	mlx_destroy_image(data->mlx, data->img_tree);
+	mlx_destroy_image(data->mlx, data->img_wall);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	exit(0);
 	return (0);
 }
 
-int	close_win(int keycode, t_data *data)
+/* Manage controls input & escape pressed key
+@param key -> key pressed
+@param data -> t_data struct pointer
+@return 0
+*/
+int	input_control(int key, t_data *data)
 {
-	if (keycode == 65307)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-		data->mlx = NULL;
-		exit(0);
-		return (1);
-	}
-	if (move_key(keycode))
-	{
-		// vars->count = vars->count + 1;
-		// ft_printf("move: %d\n", vars->count);
-		return (1);
-	}
+	if (key == 65307)
+		close_window(data);
 	return (0);
 }
 
-int	main(void)
+/* Init the game and the window
+@param data -> t_data struct pointer
+@param map -> t_map struct pointer
+*/
+void	init_game(t_data *data, t_map *map)
+{
+	data->mlx = mlx_init();
+	data->map = map->map;
+	data->w = map->w;
+	data->h = map->h;
+	data->win = mlx_new_window(data->mlx, data->w * 64, data->h * 64,
+			"so_long");
+	data->moves = 0;
+	data->collect = 0;
+	init_img(data);
+	mlx_loop_hook(data->mlx, fill_window_img, data);
+	mlx_key_hook(data->win, input_control, data);
+	mlx_hook(data->win, 17, 1, close_window, data);
+	mlx_loop(data->mlx);
+}
+
+/* Main function */
+int	main(int ac, char **av)
 {
 	t_data	data;
+	t_map	map;
 
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 600, 300, "Hello world!");
-	mlx_key_hook(data.win, &close_win, &data);
-	mlx_loop(data.mlx);
+	if (ac != 2)
+		return (print_message("1 map needed (./so_long <maps.ber>).", 1));
+	if (!init_map(&map, av[1]))
+		return (0);
+	init_game(&data, &map);
+	return (1);
 }

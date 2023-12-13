@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/12 13:55:07 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:17:42 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	init_map_size(t_map *map, char *file)
 	}
 	map->h = count;
 	close(fd);
-	if (map->h == map->w)
-		return (0);
 	return (free(line), 1);
 }
 

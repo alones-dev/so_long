@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:30:11 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/12 10:52:39 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:16:02 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	print_message(char *message, int error)
 */
 int	in_set(int c, char *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
