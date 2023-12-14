@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:30:11 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/13 15:16:02 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:04:29 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,31 @@ int	in_set(int c, char *set)
 		i++;
 	}
 	return (0);
+}
+
+/* Get the player position
+@param data -> t_data struct pointer
+*/
+void	get_player_pos(t_data *data)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < data->h)
+	{
+		while (data->map[y][x] && data->map[y][x] != '\n')
+		{
+			if (data->map[y][x] == 'P')
+			{
+				data->ply_x = x;
+				data->ply_y = y;
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }

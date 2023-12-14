@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/13 15:42:57 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:04:36 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ typedef struct s_data
 	char	**map;
 	int		w;
 	int		h;
+	int		ply_x;
+	int		ply_y;
 	void	*img_character;
 	void	*img_coin;
 	void	*img_portal;
 	void	*img_tiles;
-	void	*img_tree;
 	void	*img_wall;
+	int		amount_coins;
 	int		moves;
 	int		collect;
 }			t_data;
@@ -61,5 +63,8 @@ int			check_amount_elt(t_map *map);
 void		init_img(t_data *data);
 int			init_map(t_map *map, char *file);
 int			fill_window_img(t_data *data);
+int			input_control(int key, t_data *data);
+int			close_window(t_data *data);
+void		get_player_pos(t_data *data);
 
 #endif
