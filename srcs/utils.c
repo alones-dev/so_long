@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:30:11 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/14 11:04:29 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:07:21 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,23 @@ int	in_set(int c, char *set)
 }
 
 /* Get the player position
-@param data -> t_data struct pointer
+@param game -> t_game struct pointer
 */
-void	get_player_pos(t_data *data)
+void	get_player_pos(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
-	while (y < data->h)
+	while (y < game->map->h)
 	{
-		while (data->map[y][x] && data->map[y][x] != '\n')
+		while (game->map->map[y][x] && game->map->map[y][x] != '\n')
 		{
-			if (data->map[y][x] == 'P')
+			if (game->map->map[y][x] == 'P')
 			{
-				data->ply_x = x;
-				data->ply_y = y;
+				game->data->ply_x = x;
+				game->data->ply_y = y;
 				return ;
 			}
 			x++;
@@ -97,4 +97,28 @@ void	get_player_pos(t_data *data)
 		x = 0;
 		y++;
 	}
+}
+
+/* Check if the file have the extension given
+@param str -> file where the extension is checked
+@param ext -> file's extension
+@return :
+	0 = bad extension
+	1 = same extension
+*/
+int	is_ext_file(char *str, char *ext)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(str) - ft_strlen(ext);
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != ext[j])
+			return (0);
+		i++;
+		j++;
+	}
+	return (1);
 }
