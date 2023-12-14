@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:56:55 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/14 14:08:07 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:41:26 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	place_img(t_game *game, int x, int y)
 	if (game->map->map[y][x] == 'C')
 		mlx_put_image_to_window(game->data->mlx, game->data->win,
 			game->data->img_coin, x * 64, y * 64);
-	if (game->map->map[y][x] == 'P')
+	if (game->map->map[y][x] == 'P' || game->map->map[y][x] == 'F')
 		mlx_put_image_to_window(game->data->mlx, game->data->win,
 			game->data->img_character, x * 64, y * 64);
 	if (game->map->map[y][x] == 'E')
