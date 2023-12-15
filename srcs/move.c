@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:51:44 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/14 16:25:43 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:56:13 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	end_game(t_game *game)
 {
 	if (game->collect == game->map->coins)
 	{
+		game->moves++;
+		ft_printf("♦ Moves: %d\n", game->moves);
 		ft_printf("\n▬▬▬ GAME OVER ▬▬▬\n");
 		close_window(game);
 		return (1);

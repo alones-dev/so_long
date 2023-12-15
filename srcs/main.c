@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/14 14:37:03 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:10:40 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@
 @param data -> t_data struct pointer
 @param map -> t_map struct pointer
 */
-void	init_game(t_game *game, t_data *data, t_map *map)
+int	init_game(t_game *game, t_data *data, t_map *map)
 {
+	int	x;
+	int	y;
+
 	data->mlx = mlx_init();
 	data->ply_x = 0;
 	data->ply_y = 0;
+	mlx_get_screen_size(data->mlx, &x, &y);
+	if ((map->w * 64) > x || (map->h * 64) > y)
+		return (0);
 	data->win = mlx_new_window(data->mlx, map->w * 64, map->h * 64, "so_long");
 	init_img(data);
 	game->data = data;
@@ -33,6 +39,7 @@ void	init_game(t_game *game, t_data *data, t_map *map)
 	mlx_key_hook(data->win, input_control, game);
 	mlx_hook(data->win, 17, 1, close_window, game);
 	mlx_loop(data->mlx);
+	return (1);
 }
 
 /* Main function */
@@ -48,6 +55,7 @@ int	main(int ac, char **av)
 		return (print_message("Bad map extension (.ber needed).", 1));
 	if (!init_map(&map, av[1]))
 		return (0);
-	init_game(&game, &data, &map);
+	if (!init_game(&game, &data, &map))
+		return (print_message("Map is too big.", 1));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/13 15:17:42 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:50:38 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	init_map_size(t_map *map, char *file)
 	}
 	map->h = count;
 	close(fd);
-	return (free(line), 1);
+	free(line);
+	return (1);
 }
 
 /* Allocate map array and fill it with the map infos
