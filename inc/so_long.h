@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 14:06:41 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:22:12 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			fill_window_img(t_game *game);
 int			input_control(int key, t_game *game);
 int			close_window(t_game *game);
 void		get_player_pos(t_game *game);
+void		free_map(t_map *map);
 int			is_ext_file(char *str, char *ext);
 
 #endif

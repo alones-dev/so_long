@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 14:50:38 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:23:47 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,15 @@ int	init_map(t_map *map, char *file)
 	if (!init_map_size(map, file))
 		return (print_message("Map invalid.", 1));
 	if (!alloc_map(map, file))
-		return (print_message("Map invalid or malloc failed", 1));
+		return (free_map(map), print_message("Map invalid or malloc failed",
+				1));
 	map->coins = get_elt_count(map, 'C');
 	if (!check_characters(map))
-		return (print_message("Invalid character in map.", 1));
+		return (free_map(map), print_message("Invalid character in map.", 1));
 	if (!check_wall(map))
-		return (print_message("Hole find around map.", 1));
+		return (free_map(map), print_message("Hole find around map.", 1));
 	if (!check_amount_elt(map))
-		return (print_message("Minimun amount element false.", 1));
+		return (free_map(map), print_message("Minimun amount element false.",
+				1));
 	return (1);
 }

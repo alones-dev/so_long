@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:51:44 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 14:56:13 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:22:28 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	close_window(t_game *game)
 	mlx_destroy_window(game->data->mlx, game->data->win);
 	mlx_destroy_display(game->data->mlx);
 	free(game->data->mlx);
+	free_map(game->map);
 	ft_printf("► Total moves: %d\n", game->moves);
 	exit(0);
 	return (0);
