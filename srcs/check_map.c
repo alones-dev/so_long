@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:41:37 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 09:34:27 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:38:16 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,31 @@ int	check_amount_elt(t_map *map)
 	if (get_elt_count(map, 'C') < 1)
 		return (0);
 	return (1);
+}
+
+/* Set the player start on map struct
+@param map -> t_map struct pointer
+*/
+void	set_playerspawn_pos(t_map *map)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < map->h)
+	{
+		while (map->map[y][x] && map->map[y][x] != '\n')
+		{
+			if (map->map[y][x] == 'P')
+			{
+				map->ply_x = x;
+				map->ply_y = y;
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }

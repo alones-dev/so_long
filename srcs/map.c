@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 11:27:29 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:37:29 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,14 @@ int	init_map(t_map *map, t_fmap *fmap, char *file)
 	map->map = NULL;
 	map->w = 0;
 	map->h = 0;
+	map->ply_x = 0;
+	map->ply_y = 0;
 	map->coins = 0;
 	if (!init_map_size(map, file))
 		return (print_message("Map invalid.", 1));
 	if (!alloc_map(map, file))
-		return (free_map(map), print_message("Map invalid or malloc failed",
-				1));
+		return (free_map(map), print_message("Map invalid", 1));
+	set_playerspawn_pos(map);
 	map->coins = get_elt_count(map, 'C');
 	if (!check_characters(map))
 		return (free_map(map), print_message("Invalid character in map.", 1));
@@ -148,6 +150,9 @@ int	init_map(t_map *map, t_fmap *fmap, char *file)
 		return (free_map(map), print_message("Minimun amount element false.",
 				1));
 	init_fmap(map, fmap);
-	flood_map(fmap, 1, 1);
+	flood_map(fmap, map->ply_x, map->ply_y);
+	if (fmap->coins > 0)
+		return (free_fmap(fmap, map->h), print_message("Map unfinishable", 1));
+	free_fmap(fmap, map->h);
 	return (1);
 }

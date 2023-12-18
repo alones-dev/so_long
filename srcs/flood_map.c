@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 09:34:38 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 11:35:55 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:40:41 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	init_fmap(t_map *map, t_fmap *fmap)
 			return (free(fmap->map[i]), 0);
 		i++;
 	}
-	fmap->coins = get_elt_count(map, 'C');
-	fmap->exit = 1;
+	fmap->coins = get_elt_count(map, 'C') + 1;
 	return (1);
 }
 
@@ -42,7 +41,7 @@ int	init_fmap(t_map *map, t_fmap *fmap)
 */
 void	free_fmap(t_fmap *fmap, int h)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < h)
@@ -53,20 +52,20 @@ void	free_fmap(t_fmap *fmap, int h)
 	free(fmap->map);
 }
 
+/* Parse the map and check if can be finish (recursive)
+@param fmap -> t_fmap struct pointer
+@param x -> player start pos x
+@param y -> player start pos y
+*/
 void	flood_map(t_fmap *fmap, int x, int y)
 {
-	if (fmap->map[y][x] == '1' || fmap->map[y][x] == 'X' ||
-		fmap->coins == 0) 
+	if (fmap->map[y][x] == '1' || fmap->map[y][x] == 'X' || fmap->coins == 0)
 		return ;
-	if (fmap->map[y][x] == 'C' || fmap->map[y][x] == 'E') 
-	{
-		fmap->map[y][x] = 'X'; 
+	if (fmap->map[y][x] == 'C' || fmap->map[y][x] == 'E')
 		fmap->coins--;
-	}
-	else
-		fmap->map[y][x] = 'X';
+	fmap->map[y][x] = 'X';
 	flood_map(fmap, x + 1, y);
-	flood_map(fmap, x - 1, y); 
+	flood_map(fmap, x - 1, y);
 	flood_map(fmap, x, y + 1);
 	flood_map(fmap, x, y - 1);
 }

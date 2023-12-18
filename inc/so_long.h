@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 11:27:37 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:38:20 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_map
 	char	**map;
 	int		w;
 	int		h;
+	int		ply_x;
+	int		ply_y;
 	int		coins;
 }			t_map;
 
@@ -48,7 +50,6 @@ typedef struct s_fmap
 {
 	char	**map;
 	int		coins;
-	int		exit;
 }			t_fmap;
 
 typedef struct s_game
@@ -77,7 +78,9 @@ int			close_window(t_game *game);
 void		get_player_pos(t_game *game);
 void		free_map(t_map *map);
 int			is_ext_file(char *str, char *ext);
-int		init_fmap(t_map *map, t_fmap *fmap);
-void	flood_map(t_fmap *fmap, int x, int y);
+int			init_fmap(t_map *map, t_fmap *fmap);
+void		flood_map(t_fmap *fmap, int x, int y);
+void		free_fmap(t_fmap *fmap, int h);
+void		set_playerspawn_pos(t_map *map);
 
 #endif
