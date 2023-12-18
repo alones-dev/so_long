@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:51:44 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 15:22:28 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:50:08 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	move_player_y(t_game *game, int movement)
 	if (game->map->map[game->data->ply_y + movement][game->data->ply_x] != '1')
 	{
 		if (game->map->map[game->data->ply_y
-			+ movement][game->data->ply_x] == 'C')
+				+ movement][game->data->ply_x] == 'C')
 			game->collect++;
 		if (game->map->map[game->data->ply_y][game->data->ply_x] == 'F')
 			game->map->map[game->data->ply_y][game->data->ply_x] = 'E';

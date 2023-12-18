@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:41:37 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 12:38:16 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:51:45 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	check_amount_elt(t_map *map)
 */
 void	set_playerspawn_pos(t_map *map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
