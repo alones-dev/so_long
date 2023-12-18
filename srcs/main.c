@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 14:10:40 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 09:58:08 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ int	main(int ac, char **av)
 	t_game	game;
 	t_data	data;
 	t_map	map;
+	t_fmap	fmap;
 
 	if (ac != 2)
 		return (print_message("1 map needed (./so_long <maps.ber>).", 1));
 	if (!is_ext_file(av[1], ".ber"))
 		return (print_message("Bad map extension (.ber needed).", 1));
-	if (!init_map(&map, av[1]))
+	if (!init_map(&map, &fmap, av[1]))
 		return (0);
 	if (!init_game(&game, &data, &map))
 		return (print_message("Map is too big.", 1));

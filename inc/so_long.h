@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 15:22:12 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:27:37 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct s_map
 	int		coins;
 }			t_map;
 
+typedef struct s_fmap
+{
+	char	**map;
+	int		coins;
+	int		exit;
+}			t_fmap;
+
 typedef struct s_game
 {
 	t_map	*map;
@@ -63,12 +70,14 @@ int			check_characters(t_map *map);
 int			get_elt_count(t_map *map, int elt);
 int			check_amount_elt(t_map *map);
 void		init_img(t_data *data);
-int			init_map(t_map *map, char *file);
+int			init_map(t_map *map, t_fmap *fmap, char *file);
 int			fill_window_img(t_game *game);
 int			input_control(int key, t_game *game);
 int			close_window(t_game *game);
 void		get_player_pos(t_game *game);
 void		free_map(t_map *map);
 int			is_ext_file(char *str, char *ext);
+int		init_fmap(t_map *map, t_fmap *fmap);
+void	flood_map(t_fmap *fmap, int x, int y);
 
 #endif

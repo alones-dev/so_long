@@ -6,16 +6,11 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/15 15:23:47 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:27:29 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*
-	TODO:
-	- flood map
-*/
 
 /* Initialize the map size from the given map
 @param map -> t_map struct pointer
@@ -133,7 +128,7 @@ int	get_elt_count(t_map *map, int elt)
 	0 = init failed
 	1 = init success
 */
-int	init_map(t_map *map, char *file)
+int	init_map(t_map *map, t_fmap *fmap, char *file)
 {
 	map->map = NULL;
 	map->w = 0;
@@ -152,5 +147,7 @@ int	init_map(t_map *map, char *file)
 	if (!check_amount_elt(map))
 		return (free_map(map), print_message("Minimun amount element false.",
 				1));
+	init_fmap(map, fmap);
+	flood_map(fmap, 1, 1);
 	return (1);
 }
