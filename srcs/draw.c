@@ -6,11 +6,26 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:56:55 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/14 15:41:26 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:27:40 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* Draw the movements amount on the screen
+@param game -> t_game struct pointer
+*/
+void	draw_move(t_game *game)
+{
+	char	*str;
+
+	str = ft_itoa(game->moves);
+	mlx_set_font(game->data->mlx, game->data->win,
+		"-misc-*-bold-*-*-*-18-120-*-*-*-*-*-*");
+	mlx_string_put(game->data->mlx, game->data->win, 10, 25, 0x00000000,
+		"Moves:");
+	mlx_string_put(game->data->mlx, game->data->win, 70, 26, 0x00000000, str);
+}
 
 /* Init all images used in the game
 @param data -> t_data struct pointer
@@ -79,6 +94,7 @@ int	fill_window_img(t_game *game)
 		while (game->map->map[y][x] && game->map->map[y][x] != '\n')
 		{
 			place_img(game, x, y);
+			draw_move(game);
 			x++;
 		}
 		x = 0;
