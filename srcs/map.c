@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 12:37:29 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:17:18 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	init_map_size(t_map *map, char *file)
 		map->w = ft_strlentonl(line);
 	while (line != NULL)
 	{
-		line = get_next_line(fd);
+		count++;
 		if (!fd)
 			break ;
-		count++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	map->h = count;
 	close(fd);

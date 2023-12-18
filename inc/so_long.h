@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:35:54 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 12:38:20 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:36:55 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ typedef struct s_data
 	void	*img_portal;
 	void	*img_tiles;
 	void	*img_wall;
+	void	*zero;
+	void	*one;
+	void	*two;
+	void	*three;
+	void	*four;
+	void	*five;
+	void	*six;
+	void	*seven;
+	void	*eight;
+	void	*nine;
 }			t_data;
 
 typedef struct s_map
@@ -71,6 +81,7 @@ int			check_characters(t_map *map);
 int			get_elt_count(t_map *map, int elt);
 int			check_amount_elt(t_map *map);
 void		init_img(t_data *data);
+void		init_img_move(t_data *data);
 int			init_map(t_map *map, t_fmap *fmap, char *file);
 int			fill_window_img(t_game *game);
 int			input_control(int key, t_game *game);

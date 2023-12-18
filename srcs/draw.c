@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:56:55 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 13:27:40 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:06:41 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void	draw_move(t_game *game)
 	char	*str;
 
 	str = ft_itoa(game->moves);
-	mlx_set_font(game->data->mlx, game->data->win,
-		"-misc-*-bold-*-*-*-18-120-*-*-*-*-*-*");
-	mlx_string_put(game->data->mlx, game->data->win, 10, 25, 0x00000000,
+	mlx_string_put(game->data->mlx, game->data->win, 10, 10, 0x00000000,
 		"Moves:");
-	mlx_string_put(game->data->mlx, game->data->win, 70, 26, 0x00000000, str);
+	mlx_string_put(game->data->mlx, game->data->win, 55, 11, 0x00000000, str);
+	free(str);
 }
 
 /* Init all images used in the game
