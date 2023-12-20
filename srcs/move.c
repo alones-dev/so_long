@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:51:44 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 14:50:16 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/20 09:12:10 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	move_player_x(t_game *game, int movement)
 		}
 		else
 			game->map->map[game->data->ply_y][game->data->ply_x] = 'P';
+		game->moves++;
+		ft_printf("♦ Moves: %d\n", game->moves);
 		return (1);
 	}
 	return (0);
@@ -110,6 +112,8 @@ int	move_player_y(t_game *game, int movement)
 		}
 		else
 			game->map->map[game->data->ply_y][game->data->ply_x] = 'P';
+		game->moves++;
+		ft_printf("♦ Moves: %d\n", game->moves);
 		return (1);
 	}
 	return (0);
@@ -134,8 +138,6 @@ int	input_control(int key, t_game *game)
 			move_player_y(game, 1);
 		if (key == 'd')
 			move_player_x(game, 1);
-		game->moves++;
-		ft_printf("♦ Moves: %d\n", game->moves);
 	}
 	return (0);
 }
