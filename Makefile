@@ -22,7 +22,7 @@ LIBFT_PATH	=	libft/
 LIBFT_LIB	=	$(LIBFT_PATH)libft.a
 
 # MiniLibX includes
-MLX_PATH	=	mlx
+MLX_PATH	=	mlx/
 MLX_INCLUDE =	-Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # Colors
@@ -39,6 +39,7 @@ $(NAME): 	$(OBJS)
 	@make -C $(LIBFT_PATH) --no-print-directory -s
 	@make -C $(PRINTF_PATH) --no-print-directory -s
 	@make -C $(GNL_PATH) --no-print-directory -s
+	@make -C $(MLX_PATH) --no-print-directory -s
 	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_LIB) $(PRINTF_LIB) $(GNL_LIB) $(MLX_INCLUDE) -o $(NAME)
 	@echo "$(GREEN)♫ $(NAME) compiled successfully! ♫$(DEFAULT)"
 
@@ -50,6 +51,7 @@ clean:
 	@make clean -C $(LIBFT_PATH) --no-print-directory -s
 	@make clean -C $(PRINTF_PATH) --no-print-directory -s
 	@make clean -C $(GNL_PATH) --no-print-directory -s
+	@make clean -C $(MLX_PATH) --no-print-directory -s
 	@echo "$(GREEN)♫ $(NAME) cleaned successfully! ♫$(DEFAULT)"
 
 fclean:		clean
