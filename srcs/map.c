@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:06:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 14:17:18 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/20 10:03:23 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	alloc_map(t_map *map, char *file)
 	char	*str;
 	int		fd;
 
-	map->map = malloc(sizeof(char *) * map->h);
+	map->map = ft_calloc(sizeof(char *), map->h + 1);
 	if (!map->map)
 		return (free(map->map), 0);
 	fd = open(file, O_RDONLY);
@@ -69,7 +69,7 @@ int	alloc_map(t_map *map, char *file)
 	{
 		map->map[i] = str;
 		if (ft_strlentonl(str) != map->w)
-			return (free(str), 0);
+			return (0);
 		i++;
 		str = get_next_line(fd);
 	}
@@ -86,12 +86,12 @@ void	free_map(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < map->h)
+	if (map->map)
 	{
-		free(map->map[i]);
-		i++;
+		while (map->map[i])
+			free(map->map[i++]);
+		free(map->map);
 	}
-	free(map->map);
 }
 
 /* Get amount of the element given (coins, player start, end...)
@@ -140,16 +140,15 @@ int	init_map(t_map *map, t_fmap *fmap, char *file)
 	if (!init_map_size(map, file))
 		return (print_message("Map invalid.", 1));
 	if (!alloc_map(map, file))
-		return (free_map(map), print_message("Map invalid", 1));
+		return (print_message("Map invalid", 1));
 	set_playerspawn_pos(map);
 	map->coins = get_elt_count(map, 'C');
 	if (!check_characters(map))
-		return (free_map(map), print_message("Invalid character in map.", 1));
+		return (print_message("Invalid character in map.", 1));
 	if (!check_wall(map))
-		return (free_map(map), print_message("Hole find around map.", 1));
+		return (print_message("Hole find around map.", 1));
 	if (!check_amount_elt(map))
-		return (free_map(map), print_message("Minimun amount element false.",
-				1));
+		return (print_message("Minimun amount element false.", 1));
 	init_fmap(map, fmap);
 	flood_map(fmap, map->ply_x, map->ply_y);
 	if (fmap->coins > 0)

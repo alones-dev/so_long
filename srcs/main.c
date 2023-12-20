@@ -6,7 +6,7 @@
 /*   By: kdaumont <kdaumont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:54:18 by kdaumont          #+#    #+#             */
-/*   Updated: 2023/12/18 14:50:11 by kdaumont         ###   ########.fr       */
+/*   Updated: 2023/12/20 09:50:23 by kdaumont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_game(t_game *game, t_data *data, t_map *map)
 	data->ply_y = 0;
 	mlx_get_screen_size(data->mlx, &x, &y);
 	if ((map->w * 64) > x || (map->h * 64) > y)
-		return (0);
+		return ((void)mlx_destroy_display(data->mlx), free(data->mlx), 0);
 	data->win = mlx_new_window(data->mlx, map->w * 64, map->h * 64, "so_long");
 	init_img(data);
 	game->data = data;
@@ -55,8 +55,8 @@ int	main(int ac, char **av)
 	if (!is_ext_file(av[1], ".ber"))
 		return (print_message("Bad map extension (.ber needed).", 1));
 	if (!init_map(&map, &fmap, av[1]))
-		return (0);
+		return (free_map(&map), 0);
 	if (!init_game(&game, &data, &map))
-		return (print_message("Map is too big.", 1));
+		return (free_map(&map), print_message("Map is too big.", 1));
 	return (1);
 }
